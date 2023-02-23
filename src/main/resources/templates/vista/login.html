@@ -10,7 +10,7 @@
         }
 
         .logo{
-            max-width: 20%;
+            max-width: 10%;
             min-height: 31px;
         }
     </style>
@@ -33,24 +33,27 @@
     </div>
 </header>
 
+<div class="my-container d-flex justify-content-center align-items-center">
+    <img class="logo" src="/images/logo-normal.png" alt="" >
+</div>
+
+
 <div class="my-container d-flex justify-content-center align-items-center" >
     <div  class="text-center">
     <main class="form-signin w-100 m-auto">
         <form action="/Seguridad" method="post">
-            <img class="logo" src="/publico/images/logo-normal.png" alt="" >
-            <br>
-            <br>
-            <br>
             <h1 class="h3 mb-3 fw-normal">Inicia sesion</h1>
 
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput" placeholder="username" name="usuario">
                 <label for="floatingInput">Nombre de usuario</label>
             </div>
+            <br>
             <div class="form-floating">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="contrasena">
                 <label for="floatingPassword">Password</label>
             </div>
+            <br>
 
             <br>
             <button class="w-100 btn btn-lg btn-info" type="submit">Iniciar sesion</button>

@@ -1,25 +1,19 @@
 package org.example.encapsulacion;
 
-import org.example.servicios.ServiciosProducto;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 public class CarroCompras {
 
     private String idCarroCompra;
     private List<Producto> listaProductos = new ArrayList<>();
 
-//    public CarroCompras() {
-//        this.listaProductos = listaProductos;
-//        this.idCarroCompra = UUID.randomUUID().toString();
-//    }
+    public CarroCompras() {}
 
-    public CarroCompras(List<Producto> listaProductos) {
+    public CarroCompras(String id, List<Producto> listaProductos) {
         this.listaProductos = listaProductos;
-        this.idCarroCompra = UUID.randomUUID().toString();
+        this.idCarroCompra = id;
     }
 
     public String getIdCarroCompra() {
@@ -39,21 +33,23 @@ public class CarroCompras {
     }
 
     public void addProducto(Producto producto){
-        if(listaProductos != null){
-            for (int i = 0; i < listaProductos.size(); i++){
-                if(listaProductos.get(i).getIdProducto() == producto.getIdProducto()){
-                    listaProductos.get(i).updateCantidad(listaProductos.get(i).getCantidad() + producto.getCantidad(), ServiciosProducto.getInstancia().getProductByID(producto.getIdProducto()).getCantidad());
-                    System.out.println("Se añadio item "+ i);
-                }
-            }
-        }
+        listaProductos.add(producto);
     }
 
     public void deleteProducto(Producto producto){
         listaProductos.remove(producto);
     }
 
-    public double getPrecioIndividual(){
+    public List<Producto> limpiarCarrito(List<Producto> listaProductos){
+        for (Producto producto: listaProductos) {
+            System.out.println("Se borró el producto: "+ producto.getNombre());
+            listaProductos.remove(producto);
+        }
+
+       return listaProductos;
+    }
+
+    public double getMontoCarroCompra(){
         double total = 0;
         double precio = 0;
         int cantidad = 0;
@@ -75,7 +71,15 @@ public class CarroCompras {
         return total;
     }
 
-    public int getCantidad(){
+    public double getTotalIndividualProducto(Producto producto){
+        double totalIndividual = 0;
+
+
+
+        return totalIndividual;
+    }
+
+    public int getCantidadCarroCompra(){
         int cantidad = 0;
         for (int i =0; i< listaProductos.size(); i++){
             cantidad += listaProductos.get(i).getCantidad();

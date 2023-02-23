@@ -35,11 +35,7 @@ public class ServiciosProducto {
     public Producto updateProducto(Producto producto){
         String identificador = producto.getIdProducto();
         Producto tempProducto = getProductByID(identificador);
-        System.out.println("Llego a updateProducto");
-        System.out.println("EL id producto pasado por parametro "+ producto.getIdProducto());
-        System.out.println("El id de tempProducto"+ tempProducto.getIdProducto().toString());
 
-        //System.out.println("Dentro de updateProducto, el id es:" +tempProducto.getIdProducto());
         if(tempProducto == null){
             System.out.println("Error, el producto que elegiste no es existente");
             return null;
@@ -63,15 +59,15 @@ public class ServiciosProducto {
     }
 
     //Actualizar cantidad de productos
-    public void updateCantidadProducto(String identificador, int cantidad){
-        Producto tempProducto = getProductByID(identificador);
-        if(tempProducto == null){
-            System.out.println("Producto no existente :/");
-        }else{
-            System.out.println("Cantidad cambiada con exito!");
-            tempProducto.updateCantidad(cantidad, tempProducto.getCantidad());
-        }
-    }
+//    public void updateCantidadProducto(String identificador, int cantidad){
+//        Producto tempProducto = getProductByID(identificador);
+//        if(tempProducto == null){
+//            System.out.println("Producto no existente :/");
+//        }else{
+//            System.out.println("Cantidad cambiada con exito!");
+//            tempProducto.updateCantidad(cantidad, tempProducto.getCantidad());
+//        }
+//    }
 
     public static ServiciosProducto getInstancia() {
         if(instancia == null){
@@ -96,13 +92,11 @@ public class ServiciosProducto {
     public Producto getProductByID(String id){
 
         for (Producto producto : listaProductos){
-            System.out.println(id + "  -  " + producto.getIdProducto());
             if (producto.getIdProducto().equals(id)){
                 System.out.println("Llego el producto por ID: "+ producto.getIdProducto());
                 return producto;
             }
         }
-        System.out.println("FuncionGetProdcutByID: Es nulo el id");
         return null;
     }
 

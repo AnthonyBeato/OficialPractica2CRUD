@@ -34,14 +34,25 @@ public class ServiciosUsuario {
     }
 
     //Registrar usuario
-    public Usuario registrarUsuario(Usuario usuario){
-        Usuario tempUsuario = getUsuariotByUser(usuario.getUsuario());
-        if(tempUsuario != null){
-            return null;
-        }
-        listaUsuarios.add(usuario);
+//    public Usuario registrarUsuario(Usuario usuario){
+//        Usuario tempUsuario = getUsuariotByUser(usuario.getUsuario());
+//        if(tempUsuario != null){
+//            return null;
+//        }
+//        listaUsuarios.add(usuario);
+//
+//        return usuario;
+//    }
 
-        return usuario;
+    public boolean registrarUsuario(Usuario usuario) {
+        // Verificamos si ya existe un usuario con ese nombre
+        if (listaUsuarios.stream().anyMatch(u -> u.getUsuario().equals(usuario.getUsuario()))) {
+            return false;
+        }
+        // Agregamos el nuevo usuario a la lista en memoria
+        System.out.println("Nuevo registro: "+ usuario.getUsuario());
+        listaUsuarios.add(usuario);
+        return true;
     }
 
     public static void setInstancia(ServiciosUsuario instancia) {

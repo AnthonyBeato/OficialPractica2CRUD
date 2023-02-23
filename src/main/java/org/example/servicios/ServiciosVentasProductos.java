@@ -19,9 +19,9 @@ public class ServiciosVentasProductos {
         }
         System.out.println("Venta registrada ");
         listVentas.add(ventaProductos);
-        for (int i = 0; i < ventaProductos.getListaProductos().size(); i++){
-            serviciosProducto.updateCantidadProducto(ventaProductos.getListaProductos().get(i).getIdProducto(), ventaProductos.getListaProductos().get(i).getCantidad() * -1);
-        }
+//        for (int i = 0; i < ventaProductos.getListaProductos().size(); i++){
+//            serviciosProducto.updateCantidadProducto(ventaProductos.getListaProductos().get(i).getIdProducto(), ventaProductos.getListaProductos().get(i).getCantidad() * -1);
+//        }
 
         return ventaProductos;
     }

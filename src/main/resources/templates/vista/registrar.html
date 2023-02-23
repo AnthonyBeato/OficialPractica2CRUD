@@ -10,7 +10,7 @@
         }
 
         .logo{
-            max-width: 20%;
+            max-width: 10%;
             min-height: 31px;
         }
     </style>
@@ -33,29 +33,37 @@
     </div>
 </header>
 
+<div class="my-container d-flex justify-content-center align-items-center">
+    <img class="logo" src="/images/logo-normal.png" alt="" >
+</div>
+
 <div class="my-container d-flex justify-content-center align-items-center" >
     <div  class="text-center">
-    <main class="form-signin w-100 m-auto">
-        <form th:action="@{/registrar}" method="post">
-            <img class="logo" src="../../../../../../Practica2CarritoCompraICC352/src/main/resources/publico/images/logo-normal.png" alt="" >
-            <br>
-            <br>
-            <br>
-            <h1 class="h3 mb-3 fw-normal">Registrar usuario</h1>
+    <main class="form-signin w-120 m-120">
+        <form action="/registrar" method="post">
 
+            <h1 class="h3 mb-3 fw-normal">Registrar usuario</h1>
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="username" name="username">
-                <label for="floatingInput">Nombre de usuario</label>
+                <input type="text" class="form-control" id="floatingNombre" placeholder="username" name="nombre">
+                <label for="floatingInput">Nombre y apellido</label>
             </div>
+            <br>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                <input type="text" class="form-control" id="floatingInput" placeholder="username" name="usuario">
+                <label for="floatingInput">Usuario</label>
+            </div>
+            <br>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="contrasena">
                 <label for="floatingPassword">Password</label>
             </div>
+            <br>
             <div class="form-floating">
                 <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Password" name="passwordConfirm">
                 <label for="floatingPassword">Confirma la password</label>
             </div>
 
+            <br>
             <br>
             <button class="w-100 btn btn-lg btn-info" type="submit">Registrar</button>
 

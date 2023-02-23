@@ -23,13 +23,13 @@ public class Producto {
         cantidad = tempProducto.getCantidad();
     }
 
-    public void updateCantidad(int nuevaCantidad, int max){
-        if(nuevaCantidad > max){
-            cantidad = max;
-            return;
-        }
-        cantidad += nuevaCantidad;
-    }
+//    public void updateCantidad(int nuevaCantidad, int max){
+//        if(nuevaCantidad > max){
+//            cantidad = max;
+//            return;
+//        }
+//        cantidad += nuevaCantidad;
+//    }
 
     public String getIdProducto() {
         return idProducto;

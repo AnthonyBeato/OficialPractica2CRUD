@@ -53,43 +53,62 @@
     <br>
     <div class="row">
         <h1 class="text-center">
-            Listado de productos
+            Listado de Ventas Realizadas
         </h1>
     </div>
 
-    <br>
-    <br>
+    <div id="listaSales">
+        <table>
+            <thead>
+                <tr>
+                    <th th:text="${venta.fecha}"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <table class="table table-striped table-bordered">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Accion</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="producto : ${productos}">
+                                <form th:action="'/carritoCompras/' + ${producto.idProducto}" method="post">
+                                    <td th:hidden="${producto.idProducto}"></td>
+                                    <td th:text="${producto.nombre}"></td>
+                                    <td th:text="${producto.precio}"></td>
+                                    <td th:hidden="${producto.cantidad}"></td>
+                                    <td>
+                                        <input type="number" class="btn btn-outline-secondary" value="1" min="1" name="cantidad">
+                                    </td>
+                                    <td>
+
+                                        <!--                                    <a th:href="'/carritoCompras/' + ${producto.idProducto}" class="btn btn-outline-info">Agregar al carrito</a>-->
+                                        <!--                                <button type="submit" name="idProducto" value="${producto.idProducto}">Agregar al carrito</button>-->
+
+                                        <button type="submit" class="btn btn-outline-info" >Agregar al carrito</button>
+
+                                    </td>
+                                </form>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="container">
-        <div class="row">
+        <div class="card">
             <div class="row align-items-start">
-                <table class="table table-striped table-bordered">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Accion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="producto : ${productos}">
-                            <form th:action="'/carritoCompras/' + ${producto.idProducto}" method="post">
-                                <td th:hidden="${producto.idProducto}"></td>
-                                <td th:text="${producto.nombre}"></td>
-                                <td th:text="${producto.precio}"></td>
-                                <td th:hidden="${producto.cantidad}"></td>
-                                <td>
-                                    <input type="number" class="btn btn-outline-secondary" value="1" min="1" name="cantidad">
-                                </td>
-                                <td>
-                                    <button type="submit" class="btn btn-outline-info" >Agregar al carrito</button>
-                                </td>
-                            </form>
-                        </tr>
 
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

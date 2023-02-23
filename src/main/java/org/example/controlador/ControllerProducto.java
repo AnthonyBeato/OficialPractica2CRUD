@@ -6,7 +6,6 @@ import org.example.encapsulacion.CarroCompras;
 import org.example.encapsulacion.Producto;
 import org.example.servicios.ServiciosProducto;
 
-import java.awt.font.TextMeasurer;
 import java.util.*;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
@@ -29,7 +28,10 @@ public class ControllerProducto extends ControllerBase {
 
                    modelo.put("titulo", "Lista de compras");
                    modelo.put("productos", listaProductos);
-                   modelo.put("cantidadProdCarrito", carroCompras.getCantidad());
+                   modelo.put("cantidadProdCarrito", carroCompras.getCantidadCarroCompra());
+
+                   //Guardar el nombre de Usuario en header
+                   modelo.put("session", ctx.sessionAttributeMap());
                    ctx.render("/templates/vista/index.html", modelo);
                });
            }) ;
@@ -44,7 +46,10 @@ public class ControllerProducto extends ControllerBase {
 
                     modelo.put("titulo", "Gestion de productos");
                     modelo.put("productos", listaProductos);
-                    modelo.put("cantidadProdCarrito", carroCompras.getCantidad());
+                    modelo.put("cantidadProdCarrito", carroCompras.getCantidadCarroCompra());
+
+                    //Guardar el nombre de Usuario en header
+                    modelo.put("session", ctx.sessionAttributeMap());
                     ctx.render("/templates/vista/gestionProductos.html", modelo);
                 });
 
@@ -55,7 +60,11 @@ public class ControllerProducto extends ControllerBase {
                     modelo.put("titulo", "Lista de productos");
                     modelo.put("productos", listaProductos);
                     CarroCompras carroCompras = ctx.sessionAttribute("carroCompras");
-                    modelo.put("cantidadProdCarrito", carroCompras.getCantidad());
+                    modelo.put("cantidadProdCarrito", carroCompras.getCantidadCarroCompra());
+
+                    //Guardar el nombre de Usuario en header
+                    modelo.put("session", ctx.sessionAttributeMap());
+
                     ctx.render("/templates/vista/index.html", modelo);
                 });
 
@@ -63,7 +72,10 @@ public class ControllerProducto extends ControllerBase {
                 get("/Crear/", ctx -> {
                     Map<String, Object> modelo = new HashMap<>();
                     CarroCompras carroCompras = ctx.sessionAttribute("carroCompras");
-                    modelo.put("cantidadProdCarrito", carroCompras.getCantidad());
+                    modelo.put("cantidadProdCarrito", carroCompras.getCantidadCarroCompra());
+
+                    //Guardar el nombre de Usuario en header
+                    modelo.put("session", ctx.sessionAttributeMap());
                     ctx.render("/templates/vista/crearProducto.html", modelo);
                 });
                 //Crear producto
@@ -90,7 +102,10 @@ public class ControllerProducto extends ControllerBase {
                     modelo.put("precio", producto.getPrecio());
                     //modelo.put("cantidad", producto.getCantidad());
                     modelo.put("action", ("/Seguridad/Productos/Modificar/".concat(producto.getIdProducto())));
-                    modelo.put("cantidadProdCarrito", carroCompras.getCantidad());
+                    modelo.put("cantidadProdCarrito", carroCompras.getCantidadCarroCompra());
+
+                    //Guardar el nombre de Usuario en header
+                    modelo.put("session", ctx.sessionAttributeMap());
                     ctx.render("/templates/vista/editarProducto.html", modelo);
                 });
                 //Actualizar producto

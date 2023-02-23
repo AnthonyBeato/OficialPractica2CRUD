@@ -34,9 +34,17 @@
         <li><a href="/carritoCompras" class="nav-link px-4 text-white">Carrito (<span th:text="${cantidadProdCarrito}"></span>)</a></li>
       </ul>
 
-      <div class="text-end">
-        <a href="/login" class="btn btn-outline-light me-2">Iniciar sesion</a>
-        <a href="/registrar" class="btn btn-info">Registrar</a>
+      <div class="text-end ml-3">
+
+        <div th:if="${session.usuario == null}">
+          <a href="/login" class="btn btn-outline-light me-2">Iniciar sesion</a>
+          <a href="/registrar" class="btn btn-info">Registrar</a>
+        </div>
+
+        <div th:if="${session.usuario != null}">
+          <span th:text="${session.usuario.usuario}" class="ml-10"></span>
+          <a href="/logout" class="btn btn-outline-danger mr-10">Logout</a>
+        </div>
       </div>
     </div>
   </div>
@@ -66,25 +74,45 @@
         </tr>
         </thead>
         <tbody>
-          <tr th:each="producto : ${listaProductos}">
+          <tr th:each="producto : ${productos}">
               <td th:text="${producto.nombre}"></td>
               <td th:text="${producto.precio}"></td>
               <td th:text="${producto.cantidad}"></td>
-              <td th:text="${producto.monto}"></td>
+              <td th:text="${producto.total}"></td>
               <td>
                 <form th:action="'/carritoCompras/Eliminar/' + ${producto.idProducto}" method="post">
-                    <a><span class="btn btn-danger"> Borrar</span> </a>
+                    <button type="submit" class="btn btn-danger">Borrar</button>
                 </form>
               </td>
           </tr>
 
         </tbody>
       </table>
+
+      <div class="d-flex">
+        <div class="card d-grip">
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <span th:text="'Total: '+ ${total_carrito} + '(RD$)'">...</span>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div>
-        <span th:text="'Total: $ '+ ${monto}">...</span>
+    <br>
+    <br>
+    <div class="d-flex justify-content-center align-items-center">
+      <br>
+      <form th:action="'/realizarVenta'" method="post">
+        <button type="submit" class="btn btn-info">Procesar compra</button>
+      </form>
+      <form th:action="'/LimpiarCarroCompras'" method="post">
+        <button type="submit" class="btn btn-secondary">Limpiar carrito</button>
+      </form>
     </div>
+
   </div>
 </div>
 </body>
