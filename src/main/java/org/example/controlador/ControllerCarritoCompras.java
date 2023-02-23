@@ -6,6 +6,7 @@ import org.example.encapsulacion.CarroCompras;
 import org.example.encapsulacion.Producto;
 import org.example.servicios.ServiciosProducto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,49 +23,6 @@ public class ControllerCarritoCompras extends ControllerBase {
 
     @Override
     public void aplicarDireccionamiento() {
-//        app.routes(() ->{
-//            path("/carritoCompras", () ->{
-//                post("/{idProducto}", ctx -> {
-//                    String identificador = ctx.pathParam("idProducto");
-//                    int cantidad = ctx.formParamAsClass("cantidad", Integer.class).get();
-//                    System.out.println("Id: "+ identificador + " Cantidad: "+ cantidad);
-//                    Producto tempProducto = serviciosProducto.getProductByID(identificador);
-//                    CarroCompras carroCompras = ctx.sessionAttribute("carroCompras");
-//
-//                    carroCompras.addProducto(new Producto(identificador, tempProducto.getNombre(), tempProducto.getPrecio(), cantidad > tempProducto.getCantidad() ? tempProducto.getCantidad() : cantidad));
-//                    System.out.println("Se agrego el producto al carrito: "+ tempProducto.getNombre()+ " ID "+ tempProducto.getIdProducto() + " Cantidad: "+ tempProducto.getCantidad());
-//                    System.out.println("Del carrito id: "+ carroCompras.getIdCarroCompra());
-//                    ctx.sessionAttribute("carroCompras", carroCompras); //almacenar carro de compras en la sesión
-//
-//                    ctx.redirect("/");
-//                });
-//                post("/Eliminar/{idProducto}", ctx -> {
-//                    String identificador = ctx.pathParam("idProducto");
-//                    CarroCompras carroCompras = ctx.sessionAttribute("carroCompras");
-//                    carroCompras.deleteProducto(serviciosProducto.getProductByID(identificador));
-//
-//                    ctx.sessionAttribute("carroCompras", carroCompras);
-//                    ctx.redirect("/carritoCompras");
-//                });
-//                get(ctx -> {
-//                    CarroCompras carroCompras = ctx.sessionAttribute("carroCompras");
-//                    List<Producto> listaProductos = carroCompras.getListaProductos();
-//                    Map<String, Object> modelo = new HashMap<>();
-//                    modelo.put("titulo", "Carro de compras");
-//                    modelo.put("listaProductos", listaProductos);
-//                    modelo.put("monto", 200);
-//                    modelo.put("cantidadProdCarrito", carroCompras.getCantidad());
-//
-//                    System.out.println("Llego al carrito");
-//
-//
-//
-//                    ctx.render("/templates/vista/carritoCompra.html", modelo);
-//                });
-//            });
-//        });
-
-        //Corrección funcional
         app.routes(() ->{
             path("/carritoCompras",  () ->{
                 //Abrir carrito de compras
@@ -101,15 +59,40 @@ public class ControllerCarritoCompras extends ControllerBase {
                 //Crear carrito, y añadir productos al carrito
                 post("/{idProducto}", ctx -> {
                     String identificador = ctx.pathParam("idProducto");
+                    String nombre = ctx.formParam("nombre");
                     int cantidad = ctx.formParamAsClass("cantidad", Integer.class).get();
                     //System.out.println("Dentro de crear, IDProd: "+ identificador + " cantidad: " + cantidad);
                     Producto tempProducto = serviciosProducto.getProductByID(identificador);
-                    tempProducto.setCantidad(tempProducto.getCantidad() + cantidad - 1);
-                    CarroCompras carroCompras = ctx.sessionAttribute("carroCompras");
 
-                    carroCompras.addProducto(tempProducto);
-                    //System.out.println("\n\n La cantidad del item es de : "+ tempProducto.getCantidad()+"debe ser "+ cantidad);
-                    ctx.sessionAttribute("carroCompras", carroCompras);
+                    //Validar si producto existe en inventario
+                    if (tempProducto != null){
+                        CarroCompras carroCompras = ctx.sessionAttribute("carroCompras");
+
+                        //Asignación de variable booleana que indicará si existe o no el producto
+                        boolean existe = false;
+
+                        //Bucle para buscar si el producto existe dentro de la lista del carrito
+                        for (Producto producto: carroCompras.getListaProductos()) {
+                            if(identificador.equals(producto.getIdProducto())) {
+                                int cantidadNueva = producto.getCantidad() + cantidad;
+                                producto.setCantidad(cantidadNueva);
+                                existe = true;
+                                break;
+                            }
+                        }
+
+                        //En el caso de que el producto no exista, se asigna la cantidad dada por el input
+                        //además, se agrega a la lista de carro de compra.
+                        if(existe == false){
+                            tempProducto.setCantidad(cantidad);
+                            carroCompras.addProducto(tempProducto);
+                        }
+
+                        ctx.sessionAttribute("carroCompras", carroCompras);
+
+                    }
+
+
 
                     ctx.redirect("/");
                 });
@@ -129,10 +112,10 @@ public class ControllerCarritoCompras extends ControllerBase {
                 post("/LimpiarCarroCompras", ctx -> {
                     System.out.println("Llego a limpiarCarroCompras");
                     CarroCompras carroCompras = ctx.sessionAttribute("carroCompras");
-                    carroCompras.limpiarCarrito(carroCompras.getListaProductos());
-                    List<Producto> listaProductos = carroCompras.getListaProductos();
+                    carroCompras.limpiarCarrito();
+                    //List<Producto> listaProductos = carroCompras.getListaProductos();
                     //carroCompras.limpiarCarrito(listaProductos);
-                    carroCompras.setListaProductos(carroCompras.limpiarCarrito(listaProductos));
+                    //carroCompras.setListaProductos(new ArrayList<>());
 
                     ctx.sessionAttribute("carroCompras", carroCompras);
 
@@ -143,7 +126,7 @@ public class ControllerCarritoCompras extends ControllerBase {
 
                     System.out.println("Llego a final del carrito");
                     //ctx.render("/templates/vista/carritoCompra.html", modelo);
-                    ctx.redirect("/carritoCompras");
+                    ctx.redirect("/");
                 });
             });
         });

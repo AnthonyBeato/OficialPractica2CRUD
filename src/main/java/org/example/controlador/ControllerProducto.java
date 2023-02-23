@@ -4,7 +4,9 @@ import Utilidad.ControllerBase;
 import io.javalin.Javalin;
 import org.example.encapsulacion.CarroCompras;
 import org.example.encapsulacion.Producto;
+import org.example.encapsulacion.Usuario;
 import org.example.servicios.ServiciosProducto;
+import org.example.servicios.ServiciosUsuario;
 
 import java.util.*;
 
@@ -50,7 +52,16 @@ public class ControllerProducto extends ControllerBase {
 
                     //Guardar el nombre de Usuario en header
                     modelo.put("session", ctx.sessionAttributeMap());
-                    ctx.render("/templates/vista/gestionProductos.html", modelo);
+
+                    Usuario usuarioActual = ctx.sessionAttribute("usuario");
+
+
+                    if(usuarioActual != null && usuarioActual.getUsuario().equals("admin")){
+                        ctx.render("/templates/vista/gestionProductos.html", modelo);
+                    }else{
+                        ctx.render("/templates/vista/error.html");
+                    }
+
                 });
 
                 //Listado de productos

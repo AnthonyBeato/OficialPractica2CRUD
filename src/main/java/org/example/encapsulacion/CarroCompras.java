@@ -40,13 +40,8 @@ public class CarroCompras {
         listaProductos.remove(producto);
     }
 
-    public List<Producto> limpiarCarrito(List<Producto> listaProductos){
-        for (Producto producto: listaProductos) {
-            System.out.println("Se borró el producto: "+ producto.getNombre());
-            listaProductos.remove(producto);
-        }
-
-       return listaProductos;
+    public void limpiarCarrito(){
+        listaProductos.clear();
     }
 
     public double getMontoCarroCompra(){
