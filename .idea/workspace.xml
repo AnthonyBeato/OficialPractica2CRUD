@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="572a171c-ceff-436a-859c-9cd048bcb540" name="Changes" comment="Commit final, Se bloqueó el acceso a ventas y a gestion productos si el usuario no es administrador, se agregó el listado de ventas realizadas, y se corrigió bug de que no se contaban bien los productos">
+    <list default="true" id="572a171c-ceff-436a-859c-9cd048bcb540" name="Changes" comment="Se agregó celda de total dentro del listado de ventas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controlador/ControllerVentas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controlador/ControllerVentas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/encapsulacion/VentaProductos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/encapsulacion/VentaProductos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/publico/js/carritoCompras.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/vista/carritoCompra.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/vista/carritoCompra.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/vista/crearProducto.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/vista/crearProducto.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/vista/editarProducto.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/vista/editarProducto.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/vista/gestionProductos.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/vista/gestionProductos.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/vista/ventas.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/vista/ventas.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +141,7 @@
       <workItem from="1677110433707" duration="1887000" />
       <workItem from="1677112343536" duration="92000" />
       <workItem from="1677113044623" duration="14630000" />
-      <workItem from="1677160308947" duration="7511000" />
+      <workItem from="1677160308947" duration="11425000" />
     </task>
     <task id="LOCAL-00001" summary="Funcionalidad del CRUD de productos añadida. Funcionalidad de añadir al carrito añadida. En curso: listar los productos en el carrito">
       <created>1676944529760</created>
@@ -160,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677165951503</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Se agregó celda de total dentro del listado de ventas">
+      <created>1677167955632</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677167955632</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,7 +181,8 @@
     <MESSAGE value="Funcionalidad del CRUD de productos añadida. Funcionalidad de añadir al carrito añadida. En curso: listar los productos en el carrito" />
     <MESSAGE value="Integración de registro de usuario, añadido del identificador de usario en el header" />
     <MESSAGE value="Commit final, Se bloqueó el acceso a ventas y a gestion productos si el usuario no es administrador, se agregó el listado de ventas realizadas, y se corrigió bug de que no se contaban bien los productos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit final, Se bloqueó el acceso a ventas y a gestion productos si el usuario no es administrador, se agregó el listado de ventas realizadas, y se corrigió bug de que no se contaban bien los productos" />
+    <MESSAGE value="Se agregó celda de total dentro del listado de ventas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se agregó celda de total dentro del listado de ventas" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
