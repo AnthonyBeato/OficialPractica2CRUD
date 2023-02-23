@@ -32,7 +32,7 @@ public class ControllerVentas extends ControllerBase {
                     CarroCompras carroCompras = ctx.sessionAttribute("carroCompras");
 
                     if(ctx.sessionAttribute("usuario") != null){
-                        VentaProductos ventaProductos = new VentaProductos(new Date(), usuario.getNombre().toString(), carroCompras.getListaProductos());
+                        VentaProductos ventaProductos = new VentaProductos(new Date(), usuario.getNombre().toString(), carroCompras.getListaProductos(), 0);
                         serviciosVentasProductos.createVentaProducto(ventaProductos);
                         ctx.sessionAttribute("carroCompras", new CarroCompras());
                         System.out.println(ventaProductos.getNombreCliente());

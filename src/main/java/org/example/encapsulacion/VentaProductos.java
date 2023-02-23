@@ -14,7 +14,7 @@ public class VentaProductos {
 
     private double total = 0;
 
-    public VentaProductos(Date fechaCompra, String nombreCliente, List<Producto> listaProductos) {
+    public VentaProductos(Date fechaCompra, String nombreCliente, List<Producto> listaProductos, double total) {
         this.fechaCompra = fechaCompra;
         this.nombreCliente = nombreCliente;
         this.listaProductos = listaProductos;
@@ -57,6 +57,13 @@ public class VentaProductos {
         this.listaProductos = listaProductos;
     }
 
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
 
     public boolean equals(Object o) {
         if (this == o) return true;

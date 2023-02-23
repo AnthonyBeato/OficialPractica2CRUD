@@ -92,6 +92,12 @@
                                 <td th:text="${producto.total}"></td>
                             </tr>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3">Total:</td>
+                                    <td th:text="${venta.total} + '(RD$)'">...</td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </td>
                 </tr>
